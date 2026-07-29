@@ -1,0 +1,17 @@
+{
+  "claim": "Replacing non-GLU FFNs by parameter-matched GLU FFNs decreases empirical NTK condition numbers in ViT and GPT-2 architectures (Figure 3).",
+  "source_anchor": "https://ar5iv.labs.arxiv.org/html/2605.20749#S3.F3",
+  "official_code": {
+    "revision": "Zemdalk/GLU-NTK@cc1664bf48505d7bac308b308ce1c495b06ce979",
+    "vit_script": "scripts/ntk/ntk_eigen_vit.py",
+    "missing_capability": "The official release contains no GPT-2 NTK implementation or Figure-3 raw CSV."
+  },
+  "machine_contract": {
+    "architectures": ["official-config ViT", "12-layer GPT-2-small backbone"],
+    "activation_pairs": [["relu", "reglu"], ["gelu", "geglu"], ["silu", "swiglu"]],
+    "seeds": [41, 42, 43, 44],
+    "ntk": "Exact scalar-output Jacobian Gram over all FFN parameters.",
+    "pass": "For every architecture/pair, GLU wins at least 3/4 paired seeds and the geometric mean condition-number ratio is below one; paired FFN parameter counts differ by at most 0.5%.",
+    "failure": "The cumulative verifier exits nonzero."
+  }
+}

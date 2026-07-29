@@ -19,7 +19,7 @@ uv sync --frozen --no-dev && uv run python -m reproduction.run_suite
 | 3 | This page | yes | `27.6,52.8,102.4` | [JSON](../../.openresearch/artifacts/historical_regression/raw.json) | yes | yes | finite width/eigenvalue regression | retained |
 | 4 | [Exact contract](../../.openresearch/artifacts/claim_4/claim_contract.json) | yes | pending formal run | pending | yes | yes | Proposition 4.1 and every Corollary 4.2 assumption | pending |
 | 5 | — | no | no | no | no | no | not in baseline | BLOCKED pending child |
-| 6 | — | no | no | no | no | no | not in baseline | BLOCKED pending child |
+| 6 | [Exact contract](../../.openresearch/artifacts/claim_6/claim_contract.json) | yes | pending formal run | pending | yes | yes | ViT and GPT-2 FFN NTKs, three activation pairs | pending |
 
 The raw file records the exact numbers visible in the judged Space revision
 `a9288ab5d4762defa1c9f49f8a58aa27377f5d7d`. The independent checker is
