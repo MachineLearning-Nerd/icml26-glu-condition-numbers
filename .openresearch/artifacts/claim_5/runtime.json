@@ -1,0 +1,13 @@
+{
+  "compute_backend": "hf",
+  "selected_flavor": "cpu-upgrade",
+  "estimated_cores": 8,
+  "actual_cgroup_cpu_quota": 8.0,
+  "actual_affinity_cpu_count": 64,
+  "suite_runtime_seconds": 7845.397022281075,
+  "claim_5_runtime_seconds": 7752.817800035933,
+  "run_id": "822e0d9a-9b4a-4f90-9f40-32413a073ef4",
+  "git_sha": "e0fe32a3bd26a0732b42afbf39eedc112263c7c9",
+  "fixed_command": "uv sync --frozen --no-dev && uv run python -m reproduction.run_suite",
+  "seeds": [51, 52, 53]
+}

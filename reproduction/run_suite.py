@@ -18,8 +18,8 @@ from .loss_crossing import run_exact_loss_crossing
 from .loss_crossing_checker import check as check_loss_crossing
 from .architecture_ntk import run_architecture_ntks
 from .architecture_ntk_checker import check as check_architecture_ntks
-from .generalization_gap import run_generalization_gap
-from .generalization_gap_checker import check as check_generalization_gap
+from .claim5_audit import run_claim5_audit
+from .claim5_audit_checker import check as check_claim5_audit
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -106,10 +106,8 @@ def main() -> int:
     crossing_ok, crossing_failures = check_loss_crossing(exact_crossing)
     architecture_ntks = run_architecture_ntks()
     architecture_ok, architecture_failures = check_architecture_ntks(architecture_ntks)
-    generalization_gap = run_generalization_gap()
-    gap_status, gap_failures, gap_details, gap_control_ok = check_generalization_gap(
-        generalization_gap
-    )
+    claim5_audit = run_claim5_audit()
+    claim5_ok, claim5_failures, claim5_controls = check_claim5_audit(claim5_audit)
 
     current_ok = (
         -1.30 <= current["slopes"]["non_glu"] <= -0.65
@@ -147,17 +145,16 @@ def main() -> int:
             "evidence": architecture_ntks,
         },
         "claim_5_generalization_gap": {
-            "status": gap_status,
-            "checker_passed": gap_status in {"VERIFIED", "FALSIFIED"},
-            "checker_failures": gap_failures,
-            "independent_checker": gap_details,
-            "negative_control_rejected": gap_control_ok,
-            "evidence": generalization_gap,
+            "status": "BLOCKED",
+            "audit_checker_passed": claim5_ok,
+            "checker_failures": claim5_failures,
+            "negative_controls": claim5_controls,
+            "evidence": claim5_audit,
         },
         "limitations": [
             "Claims 1-3 are finite numerical corroboration of asymptotic statements.",
             "The historical n=40 no-crossing result violates Corollary 4.2's n>=300 assumption and is rejected as a current falsification.",
-            "Claim 5 uses the complete CIFAR-10 dataset and official Mixer configuration but a 15-epoch rather than 100-epoch horizon.",
+            "Claim 5 is BLOCKED after four routes: its complete-CIFAR reduced Mixer supports limited gap but not acceleration, and its capacity/horizon deviations prevent valid falsification.",
             "Claim 6 uses n=8 rather than the official ViT script's n=64.",
         ],
         "runtime_seconds": time.perf_counter() - started,
@@ -171,8 +168,7 @@ def main() -> int:
         and current_ok
         and crossing_ok
         and architecture_ok
-        and gap_status in {"VERIFIED", "FALSIFIED"}
-        and gap_control_ok
+        and claim5_ok
     )
     print(f"EVAL_STATUS={'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1

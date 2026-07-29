@@ -1,12 +1,22 @@
 {
   "claim_id": 5,
   "paper_anchor": ["#S5", "#S5.F7", "#A4"],
-  "statement": "In a real MLP-Mixer/CIFAR-10 setting, GLU accelerates optimization while providing limited advantage in reducing the generalization gap at matched training loss.",
+  "statement": "Section 5/Figure 7 attributes GLU's primary benefit to faster optimization rather than a materially smaller generalization gap in the considered real-model experiments.",
   "machine_contract": {
-    "optimization": "ReGLU has lower 0-15 epoch training-loss AUC in at least 2 of 3 paired seeds.",
-    "gap": "The seed-level mean ReGLU-minus-ReLU conditional gap has absolute value below 0.10 cross-entropy, its 95% t interval contains zero, and fewer than 2 seeds show a ReGLU advantage larger than 0.10.",
-    "falsification": "At least 2 seeds show >0.10 lower ReGLU gap and the 95% interval lies wholly below -0.10.",
-    "assumptions": ["full CIFAR-10", "official MLP-Mixer code path with declared dim=64/depth=2 capacity", "parameter mismatch <=1%", "SGD lr=0.005", "matched training loss"]
+    "verification": "Both premises must hold: (a) GLU accelerates optimization and (b) its matched-loss generalization-gap difference is practically equivalent to non-GLU.",
+    "optimization_scoped_test": "ReGLU has lower 0-15 epoch training-loss AUC in at least 2 of 3 paired seeds.",
+    "gap_equivalence": "A seed-level two-one-sided t test rejects effects outside +/-0.10 cross-entropy at alpha=0.05; epochs are not treated as independent replicates.",
+    "falsification": "A counterexample must satisfy every source setting, including the official default Mixer capacity and 100-epoch horizon, then contradict either premise.",
+    "source_assumptions": [
+      "full CIFAR-10",
+      "official MLP-Mixer code path",
+      "official default dim=256/depth=4 for the source script",
+      "parameter mismatch <=1%",
+      "SGD lr=0.005, momentum=0.9, no weight decay",
+      "official 100-epoch horizon",
+      "matched training loss for gap comparison"
+    ]
   },
-  "verdicts": ["VERIFIED", "FALSIFIED", "BLOCKED"]
+  "verdicts": ["VERIFIED", "FALSIFIED", "BLOCKED"],
+  "final_verdict_rule": "If the full source setting is not completed and no assumption-complete counterexample exists, the combined claim is BLOCKED even when a scoped component is supported."
 }

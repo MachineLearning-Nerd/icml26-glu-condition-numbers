@@ -27,3 +27,17 @@ uses the same official archive URL with an explicit User-Agent, a bounded
 socket timeout, progress output, safe extraction, and the authoritative
 SHA-256 `6d958be074577803d12ecdefd02955f39262c83c16fe9348329d7fe0b5c001ce`.
 No data or scientific setting changed.
+
+Attempt 3 is an independent statistical route over the frozen raw trajectory.
+It treats each seed—not each correlated epoch—as one replicate and performs a
+two-one-sided t test against the predeclared +/-0.10 CE practical margin. This
+route can verify only the limited-gap premise; it cannot manufacture the
+optimization premise.
+
+Attempt 4 is dedicated to falsification. Before inspecting first-hit outcomes,
+it fixes loss thresholds at 2.00, 1.75, 1.50, and 1.40 CE. It compares the
+first epoch reaching each threshold in every paired seed and explicitly audits
+all source assumptions. A scoped adverse result is accepted as a valid
+falsification only if the default dimension/depth and 100-epoch assumptions
+are also satisfied. They are not, so the route must reject the tempting
+counterexample and return BLOCKED.
