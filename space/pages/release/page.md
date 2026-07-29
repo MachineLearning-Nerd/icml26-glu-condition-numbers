@@ -40,8 +40,8 @@ and runtime either on its canonical page or through a descriptive link.
 Judged Space revision:
 `DineshAI/w0JhOFWPJl@a9288ab5d4762defa1c9f49f8a58aa27377f5d7d`.
 Its 13-file protected manifest is preserved. The historical overview remains
-unchanged and reachable. Current Git SHA:
-`9e8f80607b38ffe350cd0112b46518d2f365c668`.
+unchanged and reachable. Published release-candidate Git SHA:
+`559aa787b0e9855d7f6f0608b27064755564c9e9`.
 
 Final cumulative checker:
 [`checker_output.json`](../../evidence/checker_output.json). Compute:
@@ -62,7 +62,10 @@ Remaining `BLOCKED` claim: Claim 5, because the full source-default Mixer
 capacity/horizon was not completed and the adverse scoped result is not a
 valid assumption-complete counterexample.
 
-Exact publication action after every gate passes: upload only the prepared
-text allowlist to the existing Space `DineshAI/w0JhOFWPJl`, verify the new
-revision and hashes, then mirror the identical published text paths plus the
-report and notebook to GitHub `main`. No second Space will be created.
+Exact publication action performed: the prepared text allowlist was committed
+additively to the existing Space `DineshAI/w0JhOFWPJl` with
+`huggingface_hub.HfApi.create_commit`, producing revision
+`37fa908366ce265a55a7744e41418a36f5af1783`. That exact revision was
+downloaded and hash-verified, then the identical published text paths plus the
+report and notebook were mirrored to GitHub `main`. No second Space was
+created.

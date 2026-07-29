@@ -5,7 +5,9 @@
     "selected_flavor": "cpu-upgrade",
     "actual_cgroup_cpu_quota": 8.0,
     "actual_affinity_cpu_count": 64,
-    "runtime_seconds": 90.82114202412777
+    "runtime_seconds": 78.71747787599452,
+    "run_id": "3f69d08f-088e-4192-9ea3-c7b3bc22b6b1",
+    "git_sha": "559aa787b0e9855d7f6f0608b27064755564c9e9"
   },
   "full_cifar_run": {
     "estimated_cores": 8,

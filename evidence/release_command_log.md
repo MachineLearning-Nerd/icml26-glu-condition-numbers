@@ -60,14 +60,21 @@ xmllint --noout reports/reproduction/images/*.svg
 ## Publication commands
 
 After the manifests, subset check, secret scan, cumulative release run, and
-blind traversal pass, the prepared text-only staging directory is uploaded in
-one additive commit:
+blind traversal pass, an initial `hf upload` attempt stopped before mutation
+when the client unnecessarily reached a rate-limited repository-creation
+endpoint. The same prepared text-only staging directory was then uploaded in
+one additive commit with `huggingface_hub.HfApi.create_commit`, using one
+`CommitOperationAdd` per allowlisted path. No Space-creation call was made and
+no second Space was created.
 
 ```bash
-hf upload DineshAI/w0JhOFWPJl <text-only-staging-dir> . --repo-type space --commit-message "Publish claim-by-claim GLU reproduction evidence"
-hf download DineshAI/w0JhOFWPJl --repo-type space --revision <published-revision> --local-dir <fresh-empty-dir> --max-workers 4
+hf upload DineshAI/w0JhOFWPJl <text-only-staging-dir> . --repo-type space --commit-message "Publish claim-by-claim GLU reproduction evidence"  # stopped before mutation
+python3 -c '<HfApi.create_commit with CommitOperationAdd entries from the exact allowlist>'  # token and generated wrapper intentionally not printed
+hf download DineshAI/w0JhOFWPJl --repo-type space --revision 37fa908366ce265a55a7744e41418a36f5af1783 --local-dir <fresh-empty-dir> --max-workers 4
 git push origin main
 git ls-remote origin refs/heads/main
 ```
 
-No token, credential value, generated wrapper, or secret is recorded.
+The first published revision was
+`37fa908366ce265a55a7744e41418a36f5af1783`. No token, credential value,
+generated wrapper, or secret is recorded.
