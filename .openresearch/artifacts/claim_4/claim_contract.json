@@ -1,0 +1,20 @@
+{
+  "claim": "Under Corollary 4.2's assumptions, expected ReLU loss is lower early, while expected ReGLU loss becomes lower sufficiently late, producing a crossing.",
+  "source_anchor": "https://ar5iv.labs.arxiv.org/html/2605.20749#S4.Thmtheorem2",
+  "quantifiers": {
+    "inputs": "x_i iid N(0,I_d)",
+    "dimensions": "d>=5, n>=300, and d+1<n",
+    "early_condition": "Y^T(K-K_tilde)Y>=0 and eta*k small",
+    "late_condition": "sufficiently large integer k",
+    "width_regime": "m tends to infinity; expected NTKs are used"
+  },
+  "machine_contract": {
+    "n": 300,
+    "d": 20,
+    "width_for_expected_kernel_scaling": 5000,
+    "seeds": [101, 102, 103, 104, 105],
+    "pass": "At least three independently generated targets satisfy every assumption; every such target has negative loss difference at k=0,1,2 and a validated negative-to-positive first hit.",
+    "failure": "The cumulative verifier exits nonzero."
+  }
+}
+

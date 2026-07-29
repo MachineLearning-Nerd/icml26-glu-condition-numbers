@@ -17,7 +17,7 @@ uv sync --frozen --no-dev && uv run python -m reproduction.run_suite
 | 1 | This page | yes | yes | [JSON](../../.openresearch/artifacts/historical_regression/raw.json) | yes | yes | finite regression of credited values | retained |
 | 2 | This page | yes | `0.037` | [JSON](../../.openresearch/artifacts/historical_regression/raw.json) | yes | yes | Eq. 5 approximation at `n=d=40,m=1000` | retained |
 | 3 | This page | yes | `27.6,52.8,102.4` | [JSON](../../.openresearch/artifacts/historical_regression/raw.json) | yes | yes | finite width/eigenvalue regression | retained |
-| 4 | This page | yes | `crossing=false,n=40` | [JSON](../../.openresearch/artifacts/historical_regression/raw.json) | yes | yes | assumption audit, not current falsification | Historical rejected baseline |
+| 4 | [Exact contract](../../.openresearch/artifacts/claim_4/claim_contract.json) | yes | pending formal run | pending | yes | yes | Proposition 4.1 and every Corollary 4.2 assumption | pending |
 | 5 | — | no | no | no | no | no | not in baseline | BLOCKED pending child |
 | 6 | — | no | no | no | no | no | not in baseline | BLOCKED pending child |
 
@@ -35,4 +35,6 @@ The exact anchors and quantifiers are in
 
 Corollary 4.2 requires `n>=300`; the historical run used `n=40`. Therefore the
 old page is preserved as historical evidence but superseded as the default
-verification. A child experiment must run the current exact contract.
+verification. The current child evaluates the exact expected-loss expression
+at `n=300,d=20`, uses one common learning rate, searches a fixed multi-horizon
+grid, and audits the quadratic-form assumption for every seed.

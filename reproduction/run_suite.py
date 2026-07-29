@@ -13,6 +13,8 @@ from threadpoolctl import threadpool_info, threadpool_limits
 
 from .checker import check_historical_fixture, negative_control
 from .kernels import gaussian_inputs, kernel_gd_loss, reglu_ntk, relu_ntk, spectrum
+from .loss_crossing import run_exact_loss_crossing
+from .loss_crossing_checker import check as check_loss_crossing
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -69,6 +71,8 @@ def main() -> int:
 
     with threadpool_limits(limits=1):
         current = current_kernel_regression()
+        exact_crossing = run_exact_loss_crossing()
+    crossing_ok, crossing_failures = check_loss_crossing(exact_crossing)
 
     current_ok = (
         -1.30 <= current["slopes"]["non_glu"] <= -0.65
@@ -89,6 +93,12 @@ def main() -> int:
         "fixture_checker": {"passed": fixture_ok, "failures": fixture_failures},
         "negative_control_rejected": control_ok,
         "current": current,
+        "claim_4_exact": {
+            "status": "VERIFIED" if crossing_ok else "BLOCKED",
+            "checker_passed": crossing_ok,
+            "checker_failures": crossing_failures,
+            "evidence": exact_crossing,
+        },
         "limitations": [
             "Claims 1-3 are finite numerical corroboration of asymptotic statements.",
             "The historical n=40 no-crossing result violates Corollary 4.2's n>=300 assumption and is rejected as a current falsification.",
@@ -99,11 +109,10 @@ def main() -> int:
     print("BEGIN_EVAL_JSON")
     print(json.dumps(result, indent=2, sort_keys=True))
     print("END_EVAL_JSON")
-    passed = fixture_ok and control_ok and current_ok
+    passed = fixture_ok and control_ok and current_ok and crossing_ok
     print(f"EVAL_STATUS={'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
