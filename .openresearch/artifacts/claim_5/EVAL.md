@@ -11,3 +11,7 @@ FALSIFIED and every cumulative regression passes.
 
 This page is a committed protocol, not a result. Raw output and the final
 verdict are populated only from the OpenResearch run log.
+
+Attempt 1 run `729a1f23-04e2-49c3-a1c9-165f04aa8741` was cancelled after
+24m48s: the default-size model did not complete its first full-dataset
+evaluation. This is an explicit resource-design failure, not claim evidence.

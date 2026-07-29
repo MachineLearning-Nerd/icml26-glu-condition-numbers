@@ -13,7 +13,7 @@ def _decision(evidence: dict, *, control_shift: float = 0.0) -> tuple[str, list[
     protocol = evidence["protocol"]
     if evidence["dataset_sizes"] != {"train": 50_000, "test": 10_000}:
         failures.append("not full CIFAR-10")
-    if protocol["model"] != "official MLP-Mixer patch=4, dim=256, depth=4":
+    if protocol["model"] != "official MLP-Mixer code path, patch=4, dim=64, depth=2":
         failures.append("wrong architecture")
     if protocol["epochs"] != 15 or len(protocol["seeds"]) != 3:
         failures.append("wrong horizon or seed count")

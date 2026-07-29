@@ -19,6 +19,8 @@ from torchvision import datasets, transforms
 SEEDS = (51, 52, 53)
 EPOCHS = 15
 BATCH_SIZE = 256
+MIXER_DIM = 64
+MIXER_DEPTH = 2
 
 
 def _seed(seed: int) -> None:
@@ -74,15 +76,20 @@ class MixerLayer(nn.Module):
 
 
 class MLPMixer(nn.Module):
-    """Paper code's CIFAR-10 model: patch=4, dim=256, depth=4."""
+    """Official Mixer code path, at a CPU-feasible declared capacity."""
 
-    def __init__(self, activation: str):
+    def __init__(
+        self,
+        activation: str,
+        dim: int = MIXER_DIM,
+        depth: int = MIXER_DEPTH,
+    ):
         super().__init__()
         self.patch = 4
-        self.patch_embed = nn.Linear(3 * self.patch * self.patch, 256)
-        self.layers = nn.ModuleList([MixerLayer(256, 64, activation) for _ in range(4)])
-        self.norm = nn.LayerNorm(256)
-        self.head = nn.Linear(256, 10)
+        self.patch_embed = nn.Linear(3 * self.patch * self.patch, dim)
+        self.layers = nn.ModuleList([MixerLayer(dim, 64, activation) for _ in range(depth)])
+        self.norm = nn.LayerNorm(dim)
+        self.head = nn.Linear(dim, 10)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         p = self.patch
@@ -314,7 +321,8 @@ def run_generalization_gap() -> dict:
         "official_code_anchor": "train_activation_gap.py@cc1664bf48505d7bac308b308ce1c495b06ce979",
         "protocol": {
             "dataset": "full CIFAR-10: 50,000 train and 10,000 test",
-            "model": "official MLP-Mixer patch=4, dim=256, depth=4",
+            "model": "official MLP-Mixer code path, patch=4, dim=64, depth=2",
+            "capacity_deviation": "dim=64/depth=2 versus official script defaults dim=256/depth=4",
             "activations": ["relu", "reglu"],
             "optimizer": "SGD lr=0.005 momentum=0.9 weight_decay=0",
             "epochs": EPOCHS,
