@@ -1,0 +1,30 @@
+{
+  "source": "DineshAI/w0JhOFWPJl@a9288ab5d4762defa1c9f49f8a58aa27377f5d7d",
+  "claim_1": {
+    "d": [20, 40, 80],
+    "kappa_non_glu": [192.3, 95.7, 50.7],
+    "kappa_glu": [43.1, 10.7, 4.2],
+    "slope_non_glu": -0.96,
+    "slope_glu": -1.69,
+    "ratio_grows": true
+  },
+  "claim_2": {
+    "d": 40,
+    "hadamard_relative_error": 0.037
+  },
+  "claim_3": {
+    "d": [20, 40, 80],
+    "lambda_max_glu_less_each_d": true,
+    "lambda_min_widths": [400, 800, 1600],
+    "lambda_min_width_sweep": [27.6, 52.8, 102.4]
+  },
+  "claim_4": {
+    "n": 40,
+    "d": 40,
+    "crossing": false,
+    "final_non_glu": 5.891,
+    "final_glu": 0.0,
+    "time_to_half_loss_non_glu": 7,
+    "time_to_half_loss_glu": 2
+  }
+}
