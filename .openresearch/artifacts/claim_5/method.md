@@ -20,3 +20,10 @@ deviations. The paper plot helper's flattened-coordinate energy test is
 reproduced for transparency but is not the primary checker. The negative
 control artificially lowers every matched ReGLU gap by 0.50; the limited-gap
 verdict must then be rejected.
+
+The first launch of Attempt 2 was cancelled before any scientific metric
+because torchvision's opaque downloader again emitted no progress. The repair
+uses the same official archive URL with an explicit User-Agent, a bounded
+socket timeout, progress output, safe extraction, and the authoritative
+SHA-256 `6d958be074577803d12ecdefd02955f39262c83c16fe9348329d7fe0b5c001ce`.
+No data or scientific setting changed.

@@ -3,9 +3,14 @@
 from __future__ import annotations
 
 import math
+import hashlib
+import os
 import random
+import tarfile
 import time
+import urllib.request
 from dataclasses import dataclass
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -21,6 +26,8 @@ EPOCHS = 15
 BATCH_SIZE = 256
 MIXER_DIM = 64
 MIXER_DEPTH = 2
+CIFAR_URL = "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz"
+CIFAR_SHA256 = "6d958be074577803d12ecdefd02955f39262c83c16fe9348329d7fe0b5c001ce"
 
 
 def _seed(seed: int) -> None:
@@ -113,7 +120,46 @@ def _copy_common_weights(source: nn.Module, target: nn.Module) -> int:
     return copied
 
 
+def _download_cifar() -> None:
+    root = Path("data")
+    extracted = root / "cifar-10-batches-py"
+    if extracted.is_dir():
+        return
+    root.mkdir(parents=True, exist_ok=True)
+    archive = root / "cifar-10-python.tar.gz"
+    temporary = archive.with_suffix(".tar.gz.partial")
+    request = urllib.request.Request(
+        CIFAR_URL,
+        headers={
+            "User-Agent": (
+                "OpenResearch-Reproduction/1.0 "
+                "(+https://github.com/MachineLearning-Nerd)"
+            )
+        },
+    )
+    digest = hashlib.sha256()
+    received = 0
+    with urllib.request.urlopen(request, timeout=60) as response, temporary.open("wb") as out:
+        while chunk := response.read(1024 * 1024):
+            out.write(chunk)
+            digest.update(chunk)
+            received += len(chunk)
+            if received % (16 * 1024 * 1024) == 0:
+                print(f"CIFAR_DOWNLOAD bytes={received}", flush=True)
+    if digest.hexdigest() != CIFAR_SHA256:
+        temporary.unlink(missing_ok=True)
+        raise RuntimeError(
+            f"CIFAR SHA-256 mismatch: got {digest.hexdigest()}, expected {CIFAR_SHA256}"
+        )
+    os.replace(temporary, archive)
+    print(f"CIFAR_DOWNLOAD verified_sha256={CIFAR_SHA256}", flush=True)
+    with tarfile.open(archive, mode="r:gz") as bundle:
+        bundle.extractall(root, filter="data")
+    print("CIFAR_DOWNLOAD extracted=true", flush=True)
+
+
 def _datasets() -> tuple:
+    _download_cifar()
     mean = (0.4914, 0.4822, 0.4465)
     std = (0.2470, 0.2435, 0.2616)
     train_transform = transforms.Compose(
@@ -128,9 +174,9 @@ def _datasets() -> tuple:
     eval_transform = transforms.Compose(
         [transforms.ToTensor(), transforms.Normalize(mean, std)]
     )
-    train = datasets.CIFAR10("./data", train=True, download=True, transform=train_transform)
+    train = datasets.CIFAR10("./data", train=True, download=False, transform=train_transform)
     train_eval = datasets.CIFAR10("./data", train=True, download=False, transform=eval_transform)
-    test = datasets.CIFAR10("./data", train=False, download=True, transform=eval_transform)
+    test = datasets.CIFAR10("./data", train=False, download=False, transform=eval_transform)
     return train, train_eval, test
 
 
@@ -321,6 +367,8 @@ def run_generalization_gap() -> dict:
         "official_code_anchor": "train_activation_gap.py@cc1664bf48505d7bac308b308ce1c495b06ce979",
         "protocol": {
             "dataset": "full CIFAR-10: 50,000 train and 10,000 test",
+            "dataset_sha256": CIFAR_SHA256,
+            "dataset_url": CIFAR_URL,
             "model": "official MLP-Mixer code path, patch=4, dim=64, depth=2",
             "capacity_deviation": "dim=64/depth=2 versus official script defaults dim=256/depth=4",
             "activations": ["relu", "reglu"],
