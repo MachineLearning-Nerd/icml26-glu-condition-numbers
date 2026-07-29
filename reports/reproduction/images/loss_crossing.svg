@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">Exact-assumption loss crossings</title>
+  <desc id="desc">Five independent seeds cross between steps 1812 and 1943. The historical n equals 40 result did not cross but violated n at least 300.</desc>
+  <rect width="900" height="470" fill="#0b1020"/>
+  <text x="48" y="48" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="24" font-weight="700">Loss crossing appears once the corollary’s assumptions are enforced</text>
+  <text x="48" y="76" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14">First sign-change step for five Gaussian-input targets · n=300, d=20</text>
+  <line x1="110" y1="370" x2="830" y2="370" stroke="#64748b"/>
+  <g stroke="#334155" stroke-width="1" stroke-dasharray="4 5">
+    <line x1="190" y1="105" x2="190" y2="382"/><line x1="350" y1="105" x2="350" y2="382"/>
+    <line x1="510" y1="105" x2="510" y2="382"/><line x1="670" y1="105" x2="670" y2="382"/>
+  </g>
+  <g fill="#38bdf8">
+    <circle cx="286" cy="135" r="10"/><circle cx="316" cy="185" r="10"/><circle cx="460" cy="235" r="10"/>
+    <circle cx="251" cy="285" r="10"/><circle cx="454" cy="335" r="10"/>
+  </g>
+  <g fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="13">
+    <text x="48" y="140">seed 101</text><text x="304" y="140">1834</text>
+    <text x="48" y="190">seed 102</text><text x="334" y="190">1853</text>
+    <text x="48" y="240">seed 103</text><text x="478" y="240">1943</text>
+    <text x="48" y="290">seed 104</text><text x="269" y="290">1812</text>
+    <text x="48" y="340">seed 105</text><text x="472" y="340">1939</text>
+  </g>
+  <g fill="#94a3b8" font-family="system-ui,sans-serif" font-size="12">
+    <text x="174" y="404">1775</text><text x="334" y="404">1875</text><text x="494" y="404">1975</text><text x="654" y="404">2075</text>
+  </g>
+  <rect x="570" y="112" width="252" height="93" rx="8" fill="#151d33" stroke="#334155"/>
+  <text x="589" y="139" fill="#fbbf24" font-family="system-ui,sans-serif" font-size="13" font-weight="700">Historical rejected baseline</text>
+  <text x="589" y="163" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12">n=40, crossing=false</text>
+  <text x="589" y="184" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12">Rejected because n≥300 was false.</text>
+  <text x="48" y="448" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="12">Negative control Yᵀ(K−K̃)Y = −10,534 violated the stated sign assumption and was rejected.</text>
+</svg>

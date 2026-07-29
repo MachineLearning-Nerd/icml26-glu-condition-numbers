@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">Claim 5 split evidence</title>
+  <desc id="desc">The matched-loss gap mean is minus 0.00078 with interval minus 0.00930 to plus 0.00775, inside the plus or minus 0.10 equivalence margin. ReGLU loss AUC ratios exceed one in all seeds.</desc>
+  <rect width="900" height="470" fill="#0b1020"/>
+  <text x="48" y="48" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="24" font-weight="700">Claim 5 splits: equivalent gaps, no observed acceleration</text>
+  <text x="48" y="76" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14">Full CIFAR-10 · three paired seeds · reduced Mixer dim=64/depth=2 · 15 epochs</text>
+  <text x="55" y="120" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="15" font-weight="700">Matched-loss generalization gap (ReGLU − ReLU, CE)</text>
+  <rect x="86" y="157" width="500" height="44" rx="6" fill="#164e63" opacity="0.65"/>
+  <line x1="336" y1="142" x2="336" y2="218" stroke="#f8fafc" stroke-width="2"/>
+  <line x1="313" y1="179" x2="355" y2="179" stroke="#38bdf8" stroke-width="7"/>
+  <line x1="313" y1="168" x2="313" y2="190" stroke="#38bdf8" stroke-width="3"/>
+  <line x1="355" y1="168" x2="355" y2="190" stroke="#38bdf8" stroke-width="3"/>
+  <circle cx="334" cy="179" r="8" fill="#f8fafc"/>
+  <g fill="#94a3b8" font-family="system-ui,sans-serif" font-size="12">
+    <text x="72" y="232">−0.10 margin</text><text x="322" y="232">0</text><text x="555" y="232">+0.10 margin</text>
+  </g>
+  <text x="616" y="170" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="13">mean −0.00078</text>
+  <text x="616" y="194" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="13">95% CI [−0.00930, +0.00775]</text>
+  <text x="55" y="282" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="15" font-weight="700">Optimization: ReGLU / ReLU loss AUC (lower than 1 would be faster)</text>
+  <line x1="270" y1="313" x2="270" y2="414" stroke="#ef4444" stroke-width="2" stroke-dasharray="6 5"/>
+  <g font-family="system-ui,sans-serif" font-size="13">
+    <text x="55" y="331" fill="#e2e8f0">seed 51</text><rect x="270" y="314" width="289" height="22" rx="4" fill="#fb7185"/><text x="570" y="331" fill="#e2e8f0">1.0483</text>
+    <text x="55" y="371" fill="#e2e8f0">seed 52</text><rect x="270" y="354" width="87" height="22" rx="4" fill="#fb7185"/><text x="368" y="371" fill="#e2e8f0">1.0145</text>
+    <text x="55" y="411" fill="#e2e8f0">seed 53</text><rect x="270" y="394" width="32" height="22" rx="4" fill="#fb7185"/><text x="313" y="411" fill="#e2e8f0">1.0053</text>
+  </g>
+  <text x="645" y="350" fill="#fbbf24" font-family="system-ui,sans-serif" font-size="15" font-weight="700">Combined verdict: BLOCKED</text>
+  <text x="645" y="376" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12">The gap premise is supported.</text>
+  <text x="645" y="396" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12">Acceleration is not; downscaling</text>
+  <text x="645" y="416" fill="#cbd5e1" font-family="system-ui,sans-serif" font-size="12">prevents a valid falsification.</text>
+  <text x="48" y="450" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="12">TOST p=.000199/.000193; four verification/falsification routes completed.</text>
+</svg>

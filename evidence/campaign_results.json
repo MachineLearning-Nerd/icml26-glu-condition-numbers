@@ -1,0 +1,106 @@
+{
+  "paper": {
+    "arxiv": "2605.20749",
+    "title": "The Devil is in the Condition Numbers: Why is GLU Better than non-GLU Structure?",
+    "source_url": "https://ar5iv.labs.arxiv.org/html/2605.20749",
+    "retrieved_at": "2026-07-29T07:48:03Z",
+    "source_sha256": "d391f59973c02be99395f55c770d31c8728c5bdc4373244b59c4597dad246e4f"
+  },
+  "candidate_git_sha": "9e8f80607b38ffe350cd0112b46518d2f365c668",
+  "fixed_command": "uv sync --frozen --no-dev && uv run python -m reproduction.run_suite",
+  "claims": [
+    {
+      "claim": 1,
+      "status": "VERIFIED",
+      "source_anchor": "Theorem 3.1",
+      "exact_statement": "kappa(K_tilde)=O(n/d^2) for GLU versus kappa(K)=O(n/d) for non-GLU.",
+      "observed": {
+        "d": [20, 40, 80],
+        "kappa_non_glu": [192.29952434146233, 95.66947639385921, 50.71052650446148],
+        "kappa_glu": [43.07907199805329, 10.713444285810358, 4.161707338055509],
+        "slope_non_glu": -0.9614990178442457,
+        "slope_glu": -1.685869876097518
+      },
+      "limitation": "Finite Monte Carlo corroboration of an asymptotic theorem."
+    },
+    {
+      "claim": 2,
+      "status": "VERIFIED",
+      "source_anchor": "Section 3, Equation 5",
+      "exact_statement": "K_tilde is approximated by K Hadamard-multiplied by XX^T/d.",
+      "observed": {"d": 40, "relative_frobenius_error": 0.037161157423250865},
+      "limitation": "The source relation is an approximation after dropping small variance terms."
+    },
+    {
+      "claim": 3,
+      "status": "VERIFIED",
+      "source_anchor": "Theorem 3.1",
+      "exact_statement": "GLU contracts lambda_max by an extra d factor while both lambda_min scale as O(m).",
+      "observed": {
+        "lambda_max_glu_less_at_every_d": true,
+        "m": [400, 800, 1600],
+        "lambda_min_non_glu": [27.6, 52.8, 102.4]
+      },
+      "limitation": "Finite widths and dimensions."
+    },
+    {
+      "claim": 4,
+      "status": "VERIFIED",
+      "source_anchor": "Proposition 4.1 and Corollary 4.2",
+      "exact_statement": "Under Gaussian inputs, d>=5, n>=300, d+1<n and nonnegative Y^T(K-K_tilde)Y, expected losses cross between early and sufficiently late optimization.",
+      "observed": {
+        "n": 300,
+        "d": 20,
+        "seeds": [101, 102, 103, 104, 105],
+        "first_crossing_steps": [1834, 1853, 1943, 1812, 1939],
+        "crossing_seed_count": 5
+      },
+      "negative_control": {
+        "construction": "minimum eigenvector of K-K_tilde",
+        "quadratic_form": -10534.002569600645,
+        "rejected": true
+      },
+      "limitation": "Expected-kernel finite numerical evaluation; not a universal proof."
+    },
+    {
+      "claim": 5,
+      "status": "BLOCKED",
+      "source_anchor": "Section 5 and Figure 7",
+      "exact_statement": "GLU's primary benefit is optimization acceleration rather than a materially smaller generalization gap in the considered real-model experiments.",
+      "observed": {
+        "dataset": "full CIFAR-10, 50000 train and 10000 test",
+        "parameter_counts": {"relu": 78986, "reglu": 78790},
+        "seed_mean_gap_differences": [-0.00004902055915716955, -0.004514553706154379, 0.0022331778760982706],
+        "mean_gap_difference": -0.000776798796404426,
+        "gap_t_95pct_ci": [-0.00930293565129776, 0.007749338058488909],
+        "equivalence_margin": 0.1,
+        "tost_p_values": [0.00019930390750414037, 0.00019320978105342098],
+        "loss_auc_reglu_over_relu": [1.0482800, 1.01451975, 1.00525681],
+        "fixed_threshold_falsification_counts": {"reglu_faster": 1, "ties": 4, "reglu_slower": 7}
+      },
+      "why_blocked": "The full-data run used dim=64/depth=2 for 15 epochs instead of the source-default dim=256/depth=4 for 100 epochs. It verifies the limited-gap component but neither verifies acceleration nor supplies an assumption-complete falsification.",
+      "routes_completed": 4
+    },
+    {
+      "claim": 6,
+      "status": "VERIFIED",
+      "source_anchor": "Figure 3",
+      "exact_statement": "Parameter-matched GLU FFNs have lower empirical NTK condition numbers in ViT and GPT-2.",
+      "observed": {
+        "architectures": ["ViT dim=4096 depth=4", "GPT-2-small dim=768 depth=12"],
+        "sample_count": 8,
+        "seeds": [41, 42, 43, 44],
+        "glu_wins": "24/24 paired architecture/activation/seed comparisons",
+        "geometric_mean_glu_over_non": {
+          "vit_relu_reglu": 0.6609539701071426,
+          "vit_gelu_geglu": 0.4692572303357683,
+          "vit_silu_swiglu": 0.4729704105999357,
+          "gpt2_relu_reglu": 0.2429547933265502,
+          "gpt2_gelu_geglu": 0.4731619271373948,
+          "gpt2_silu_swiglu": 0.6115918297411216
+        }
+      },
+      "limitation": "n=8 rather than the official ViT script's n=64; GPT-2 was independently reconstructed because the official release has no GPT-2 NTK code."
+    }
+  ]
+}

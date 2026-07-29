@@ -1,0 +1,14 @@
+{
+  "status": "VERIFIED",
+  "checker_passed": true,
+  "failures": [],
+  "crossing_seeds": 5,
+  "total_seeds": 5,
+  "negative_control": {
+    "quadratic_form": -10534.002569600645,
+    "assumption_satisfied": false,
+    "rejected": true
+  },
+  "run_id": "23596694-f25b-4220-84ab-6776828237d1",
+  "git_sha": "386bf4d8"
+}

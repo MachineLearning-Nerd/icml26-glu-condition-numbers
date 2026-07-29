@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "title": "GLU Condition Numbers (w0JhOFWPJl)",
+  "emoji": "🎯",
+  "space_id": "DineshAI/w0JhOFWPJl",
+  "paper": null,
+  "tags": [
+    "icml2026-repro",
+    "paper-w0JhOFWPJl"
+  ],
+  "updated_at": "2026-07-29T12:00:00+00:00",
+  "root": {
+    "slug": "index",
+    "title": "GLU Condition Numbers (w0JhOFWPJl)",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "current",
+        "title": "Current verification — start here",
+        "file": "pages/current/page.md",
+        "children": []
+      },
+      {
+        "slug": "claims-1-3",
+        "title": "Claims 1–3 — kernel conditioning",
+        "file": "pages/claims-1-3/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-4",
+        "title": "Claim 4 — exact-assumption loss crossing",
+        "file": "pages/claim-4/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-5",
+        "title": "Claim 5 — BLOCKED after four routes",
+        "file": "pages/claim-5/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-6",
+        "title": "Claim 6 — real ViT and GPT-2 NTKs",
+        "file": "pages/claim-6/page.md",
+        "children": []
+      },
+      {
+        "slug": "release",
+        "title": "Release evidence and visibility matrix",
+        "file": "pages/release/page.md",
+        "children": []
+      },
+      {
+        "slug": "overview",
+        "title": "Historical rejected baseline",
+        "file": "pages/overview/page.md",
+        "children": []
+      }
+    ]
+  },
+  "agent_view_tokens": 2400,
+  "revision": "current-claim-audit-20260729"
+}

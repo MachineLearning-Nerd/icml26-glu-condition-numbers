@@ -1,0 +1,14 @@
+{
+  "status": "VERIFIED",
+  "checker_passed": true,
+  "failures": [],
+  "paired_seed_wins": 24,
+  "paired_seed_total": 24,
+  "negative_control": {
+    "comparison": "identical ReLU ViT measurement against itself",
+    "ratio": 1.0,
+    "rejected_as_expected_reduction": true
+  },
+  "run_id": "cea9fb5e-cd0d-4b52-a73c-b8898f71163e",
+  "git_sha": "915a208608f311f562d215eb39be2bd142257b56"
+}

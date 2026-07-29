@@ -1,0 +1,12 @@
+{
+  "pre_run_estimated_cores": 8,
+  "selected_backend": "hf",
+  "selected_flavor": "cpu-upgrade",
+  "actual_cgroup_cpu_quota": 8.0,
+  "actual_affinity_cpu_count": 64,
+  "scientific_runtime_seconds": 90.3265417071525,
+  "suite_runtime_seconds": 90.69387016980909,
+  "orchestrated_job_duration_seconds": 122,
+  "run_id": "cea9fb5e-cd0d-4b52-a73c-b8898f71163e",
+  "deviation": "The run's early top-level metadata field still printed requested_core_estimate=1 even though the pre-run plan and eight-thread architecture code required eight; the later cumulative suite corrected that field to 8."
+}

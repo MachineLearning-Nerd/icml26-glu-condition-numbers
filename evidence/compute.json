@@ -1,0 +1,25 @@
+{
+  "policy": "Local only for <=1 core and <=5 minutes; every uncertain or larger CPU task used HF cpu-upgrade; no GPU was used.",
+  "final_cumulative_run": {
+    "estimated_cores": 8,
+    "selected_flavor": "cpu-upgrade",
+    "actual_cgroup_cpu_quota": 8.0,
+    "actual_affinity_cpu_count": 64,
+    "runtime_seconds": 90.82114202412777
+  },
+  "full_cifar_run": {
+    "estimated_cores": 8,
+    "selected_flavor": "cpu-upgrade",
+    "actual_cgroup_cpu_quota": 8.0,
+    "actual_affinity_cpu_count": 64,
+    "runtime_seconds": 7845.397022281075
+  },
+  "architecture_ntk_run": {
+    "estimated_cores": 8,
+    "selected_flavor": "cpu-upgrade",
+    "actual_cgroup_cpu_quota": 8.0,
+    "runtime_seconds": 90.6939
+  },
+  "gpu_runtime_seconds": 0,
+  "reported_cost": "HF Jobs billing is account-side; no trustworthy currency total was exposed by orx, so no cost is invented."
+}

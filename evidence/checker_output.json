@@ -1,0 +1,20 @@
+{
+  "run_id": "16f0b1b5-a0e8-40a8-b15c-b6352de9f2da",
+  "git_sha": "9e8f80607b38ffe350cd0112b46518d2f365c668",
+  "eval_status": "PASS",
+  "runtime_seconds": 90.82114202412777,
+  "checks": {
+    "historical_fixture": {"passed": true, "failures": []},
+    "claim_4": {"passed": true, "failures": []},
+    "claim_5_blocked_classification_audit": {"passed": true, "failures": []},
+    "claim_6": {"passed": true, "failures": []}
+  },
+  "negative_controls": {
+    "historical_hadamard_error_corruption_rejected": true,
+    "claim_4_negative_quadratic_form_rejected": true,
+    "claim_5_tampered_raw_row_rejected": true,
+    "claim_5_assumption_violating_counterexample_rejected": true,
+    "claim_6_identical_architecture_ratio_one_rejected": true
+  },
+  "interpretation": "PASS means the cumulative evidence and the honest BLOCKED classification for Claim 5 reproduced. It does not relabel Claim 5 as verified."
+}

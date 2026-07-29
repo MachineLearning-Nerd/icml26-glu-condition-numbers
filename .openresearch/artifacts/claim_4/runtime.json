@@ -1,0 +1,10 @@
+{
+  "estimated_cores": 1,
+  "selected_backend": "hf",
+  "selected_flavor": "cpu-upgrade",
+  "selection_reason": "Runtime was uncertain before the first exact-assumption run.",
+  "actual_allocation": "The early suite did not yet print cgroup allocation; provider flavor is recorded but core quota is unknown.",
+  "scientific_suite_runtime_seconds": 0.4534981739707291,
+  "orchestrated_job_duration_seconds": 37,
+  "run_id": "23596694-f25b-4220-84ab-6776828237d1"
+}

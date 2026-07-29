@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">GLU over non-GLU NTK condition-number ratios</title>
+  <desc id="desc">Six bars are all below one. Lower is better. ViT ratios are 0.661, 0.469, 0.473; GPT-2 ratios are 0.243, 0.473, 0.612.</desc>
+  <rect width="900" height="470" fill="#0b1020"/>
+  <text x="48" y="48" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="24" font-weight="700">Real-architecture NTKs: GLU is better conditioned in 24/24 pairs</text>
+  <text x="48" y="76" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14">Geometric mean κ(GLU) / κ(non-GLU), four paired seeds · lower is better</text>
+  <line x1="245" y1="105" x2="245" y2="404" stroke="#64748b" stroke-width="1"/>
+  <line x1="245" y1="105" x2="805" y2="105" stroke="#ef4444" stroke-width="2" stroke-dasharray="7 6"/>
+  <text x="812" y="110" fill="#fca5a5" font-family="system-ui,sans-serif" font-size="12">no change (1.0)</text>
+  <g font-family="system-ui,sans-serif" font-size="14">
+    <text x="48" y="143" fill="#e2e8f0">ViT ReLU → ReGLU</text>
+    <rect x="245" y="124" width="370" height="25" rx="4" fill="#38bdf8"/><text x="624" y="143" fill="#e2e8f0">0.661</text>
+    <text x="48" y="190" fill="#e2e8f0">ViT GELU → GEGLU</text>
+    <rect x="245" y="171" width="263" height="25" rx="4" fill="#38bdf8"/><text x="517" y="190" fill="#e2e8f0">0.469</text>
+    <text x="48" y="237" fill="#e2e8f0">ViT SiLU → SwiGLU</text>
+    <rect x="245" y="218" width="265" height="25" rx="4" fill="#38bdf8"/><text x="519" y="237" fill="#e2e8f0">0.473</text>
+    <text x="48" y="294" fill="#e2e8f0">GPT-2 ReLU → ReGLU</text>
+    <rect x="245" y="275" width="136" height="25" rx="4" fill="#a78bfa"/><text x="390" y="294" fill="#e2e8f0">0.243</text>
+    <text x="48" y="341" fill="#e2e8f0">GPT-2 GELU → GEGLU</text>
+    <rect x="245" y="322" width="265" height="25" rx="4" fill="#a78bfa"/><text x="519" y="341" fill="#e2e8f0">0.473</text>
+    <text x="48" y="388" fill="#e2e8f0">GPT-2 SiLU → SwiGLU</text>
+    <rect x="245" y="369" width="343" height="25" rx="4" fill="#a78bfa"/><text x="597" y="388" fill="#e2e8f0">0.612</text>
+  </g>
+  <text x="48" y="442" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="12">Exact scalar-output Jacobian Gram over FFN parameters · n=8 · seeds 41–44 · parameter mismatch ≤0.39%</text>
+</svg>

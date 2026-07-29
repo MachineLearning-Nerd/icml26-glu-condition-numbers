@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">Condition number versus dimension</title>
+  <desc id="desc">Non-GLU decreases from 192.3 to 50.7 with log slope minus 0.96. GLU decreases from 43.1 to 4.16 with slope minus 1.69.</desc>
+  <rect width="900" height="470" fill="#0b1020"/>
+  <text x="48" y="48" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="24" font-weight="700">The central scaling signal survives cumulative regression</text>
+  <text x="48" y="76" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14">NTK condition number κ across input dimension d · n=40, width=1000</text>
+  <line x1="100" y1="390" x2="835" y2="390" stroke="#64748b"/>
+  <line x1="100" y1="105" x2="100" y2="390" stroke="#64748b"/>
+  <g fill="#94a3b8" font-family="system-ui,sans-serif" font-size="12">
+    <text x="145" y="414">d=20</text><text x="425" y="414">d=40</text><text x="705" y="414">d=80</text>
+    <text x="62" y="394">0</text><text x="50" y="324">50</text><text x="44" y="254">100</text><text x="44" y="184">150</text><text x="44" y="114">200</text>
+  </g>
+  <polyline points="170,121 450,256 730,319" fill="none" stroke="#fb7185" stroke-width="4"/>
+  <polyline points="170,330 450,375 730,384" fill="none" stroke="#38bdf8" stroke-width="4"/>
+  <g fill="#fb7185"><circle cx="170" cy="121" r="7"/><circle cx="450" cy="256" r="7"/><circle cx="730" cy="319" r="7"/></g>
+  <g fill="#38bdf8"><circle cx="170" cy="330" r="7"/><circle cx="450" cy="375" r="7"/><circle cx="730" cy="384" r="7"/></g>
+  <g fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="13">
+    <text x="181" y="119">192.3</text><text x="461" y="254">95.7</text><text x="741" y="317">50.7</text>
+    <text x="181" y="347">43.1</text><text x="461" y="374">10.7</text><text x="741" y="383">4.16</text>
+  </g>
+  <rect x="580" y="105" width="245" height="78" rx="8" fill="#151d33" stroke="#334155"/>
+  <circle cx="602" cy="130" r="6" fill="#fb7185"/><text x="618" y="135" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="13">non-GLU slope −0.96</text>
+  <circle cx="602" cy="158" r="6" fill="#38bdf8"/><text x="618" y="163" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="13">GLU slope −1.69</text>
+  <text x="48" y="448" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="12">Finite corroboration of Theorem 3.1; not a proof of the asymptotic big-O statement.</text>
+</svg>
