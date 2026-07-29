@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import platform
+import subprocess
 import time
 from pathlib import Path
 
@@ -17,6 +18,8 @@ from .loss_crossing import run_exact_loss_crossing
 from .loss_crossing_checker import check as check_loss_crossing
 from .architecture_ntk import run_architecture_ntks
 from .architecture_ntk_checker import check as check_architecture_ntks
+from .generalization_gap import run_generalization_gap
+from .generalization_gap_checker import check as check_generalization_gap
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,6 +41,15 @@ def cpu_allocation() -> dict:
         "affinity_cpu_count": affinity,
         "cgroup_cpu_quota": quota,
     }
+
+
+def git_sha() -> str:
+    supplied = os.environ.get("ORX_GIT_SHA")
+    if supplied:
+        return supplied
+    return subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
+    ).strip()
 
 
 def current_kernel_regression() -> dict:
@@ -94,6 +106,10 @@ def main() -> int:
     crossing_ok, crossing_failures = check_loss_crossing(exact_crossing)
     architecture_ntks = run_architecture_ntks()
     architecture_ok, architecture_failures = check_architecture_ntks(architecture_ntks)
+    generalization_gap = run_generalization_gap()
+    gap_status, gap_failures, gap_details, gap_control_ok = check_generalization_gap(
+        generalization_gap
+    )
 
     current_ok = (
         -1.30 <= current["slopes"]["non_glu"] <= -0.65
@@ -103,14 +119,18 @@ def main() -> int:
     )
     result = {
         "suite": "baseline-cumulative-regression",
-        "git_sha": os.environ.get("ORX_GIT_SHA", "reported-by-orx-run"),
+        "git_sha": git_sha(),
         "seed_set": [1, 2, 7, 8],
-        "requested_core_estimate": 1,
+        "requested_core_estimate": 8,
         "selected_compute": "local only if <=5 minutes; otherwise hf cpu-upgrade",
         "cpu_allocation": cpu_allocation(),
         "platform": platform.platform(),
         "threadpool_before_limit": threadpool_info(),
-        "enforced_thread_limit": 1,
+        "thread_limits": {
+            "kernel_regression_and_claim_4": 1,
+            "claim_6_architecture_ntk": 8,
+            "claim_5_cifar_training": 8,
+        },
         "fixture_checker": {"passed": fixture_ok, "failures": fixture_failures},
         "negative_control_rejected": control_ok,
         "current": current,
@@ -126,17 +146,34 @@ def main() -> int:
             "checker_failures": architecture_failures,
             "evidence": architecture_ntks,
         },
+        "claim_5_generalization_gap": {
+            "status": gap_status,
+            "checker_passed": gap_status in {"VERIFIED", "FALSIFIED"},
+            "checker_failures": gap_failures,
+            "independent_checker": gap_details,
+            "negative_control_rejected": gap_control_ok,
+            "evidence": generalization_gap,
+        },
         "limitations": [
             "Claims 1-3 are finite numerical corroboration of asymptotic statements.",
             "The historical n=40 no-crossing result violates Corollary 4.2's n>=300 assumption and is rejected as a current falsification.",
-            "Claims 5-6 are intentionally absent from the frozen baseline and must be added by child experiments.",
+            "Claim 5 uses the complete CIFAR-10 dataset and official Mixer configuration but a 15-epoch rather than 100-epoch horizon.",
+            "Claim 6 uses n=8 rather than the official ViT script's n=64.",
         ],
         "runtime_seconds": time.perf_counter() - started,
     }
     print("BEGIN_EVAL_JSON")
     print(json.dumps(result, indent=2, sort_keys=True))
     print("END_EVAL_JSON")
-    passed = fixture_ok and control_ok and current_ok and crossing_ok and architecture_ok
+    passed = (
+        fixture_ok
+        and control_ok
+        and current_ok
+        and crossing_ok
+        and architecture_ok
+        and gap_status in {"VERIFIED", "FALSIFIED"}
+        and gap_control_ok
+    )
     print(f"EVAL_STATUS={'PASS' if passed else 'FAIL'}")
     return 0 if passed else 1
 

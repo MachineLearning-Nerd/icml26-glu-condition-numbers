@@ -1,0 +1,12 @@
+{
+  "claim_id": 5,
+  "paper_anchor": ["#S5", "#S5.F7", "#A4"],
+  "statement": "In a real MLP-Mixer/CIFAR-10 setting, GLU accelerates optimization while providing limited advantage in reducing the generalization gap at matched training loss.",
+  "machine_contract": {
+    "optimization": "ReGLU has lower 0-15 epoch training-loss AUC in at least 2 of 3 paired seeds.",
+    "gap": "The seed-level mean ReGLU-minus-ReLU conditional gap has absolute value below 0.10 cross-entropy, its 95% t interval contains zero, and fewer than 2 seeds show a ReGLU advantage larger than 0.10.",
+    "falsification": "At least 2 seeds show >0.10 lower ReGLU gap and the 95% interval lies wholly below -0.10.",
+    "assumptions": ["full CIFAR-10", "official MLP-Mixer configuration", "parameter mismatch <=1%", "SGD lr=0.005", "matched training loss"]
+  },
+  "verdicts": ["VERIFIED", "FALSIFIED", "BLOCKED"]
+}
