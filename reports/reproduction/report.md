@@ -154,10 +154,10 @@ and the locked [`uv.lock`](../../uv.lock).
 
 Important experiment branches:
 
-- [Exact Corollary 4.2 loss crossing](https://github.com/MachineLearning-Nerd/icml26-repro-w0JhOFWPJl-the-devil-is-in-the-condition-numbers-why-is-glu-better-than-non-glu-structu/tree/orx/exact-corollary-4-2-loss-crossing)
-- [Real ViT and GPT-2 FFN NTKs](https://github.com/MachineLearning-Nerd/icml26-repro-w0JhOFWPJl-the-devil-is-in-the-condition-numbers-why-is-glu-better-than-non-glu-structu/tree/orx/real-vit-and-gpt-2-ffn-ntks)
-- [Full-CIFAR Mixer gap experiment](https://github.com/MachineLearning-Nerd/icml26-repro-w0JhOFWPJl-the-devil-is-in-the-condition-numbers-why-is-glu-better-than-non-glu-structu/tree/orx/full-cifar-10-mixer-generalization-gap)
-- [Independent Claim 5 audit and falsification route](https://github.com/MachineLearning-Nerd/icml26-repro-w0JhOFWPJl-the-devil-is-in-the-condition-numbers-why-is-glu-better-than-non-glu-structu/tree/orx/claim-5-independent-audit-and-falsification-rout)
+- [Exact Corollary 4.2 loss crossing](https://github.com/MachineLearning-Nerd/icml26-glu-condition-numbers/tree/audit/c4-loss-crossing)
+- [Real ViT and GPT-2 FFN NTKs](https://github.com/MachineLearning-Nerd/icml26-glu-condition-numbers/tree/audit/c6-real-architecture-ntks)
+- [Full-CIFAR Mixer gap experiment](https://github.com/MachineLearning-Nerd/icml26-glu-condition-numbers/tree/audit/c5-cifar-mixer-gap)
+- [Independent Claim 5 audit and falsification route](https://github.com/MachineLearning-Nerd/icml26-glu-condition-numbers/tree/audit/c5-independent-audit)
 
 The best-supported release forecast is `10/12`, not a judge result: Claim 6 is
 the direct candidate for new credit, while Claim 5 remains blocked. A full
