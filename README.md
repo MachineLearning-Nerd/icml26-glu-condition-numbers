@@ -3,6 +3,14 @@
 Independent, claim-by-claim reproduction audit for the ICML 2026 paper
 [“The Devil is in the Condition Numbers: Why is GLU Better than non-GLU Structure?”](https://arxiv.org/abs/2605.20749).
 
+> **Audit status:** `PARTIAL_C1_C2_C3_C4_C6_VERIFIED_C5_BLOCKED_HISTORICAL_SCORE_8_OF_12_NO_CURRENT_SCORE`
+>
+> Claims 1–4 and 6 are verified within explicit finite or architecture-scoped
+> contracts. Claim 5 remains blocked because the CPU-feasible CIFAR Mixer run
+> changes the source-default width, depth, and epoch horizon. See
+> [`STATUS.md`](STATUS.md), [`CLAIM_EVIDENCE.md`](CLAIM_EVIDENCE.md), and
+> [`REPORT.md`](REPORT.md) for the standardized audit record.
+
 This repository audits why gated feed-forward blocks such as ReGLU, GEGLU,
 and SwiGLU can optimize better than non-gated counterparts. It is an
 independent evidence package, not an official author implementation. The

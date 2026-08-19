@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "paper": "The Devil is in the Condition Numbers: Why is GLU Better than non-GLU Structure?",
+  "arxiv": "2605.20749",
+  "submission": "w0JhOFWPJl",
+  "phase": "standardized_claim_audit_publication",
+  "overall_status": "PARTIAL_C1_C2_C3_C4_C6_VERIFIED_C5_BLOCKED_HISTORICAL_SCORE_8_OF_12_NO_CURRENT_SCORE",
+  "next_action": "Retain the scoped evidence package and reproduce Claim 5 at source-default Mixer capacity and 100 epochs before changing its status.",
+  "current_score_claim": false,
+  "publication_allowed": false,
+  "author_endorsement_claimed": false,
+  "claim_statuses": {
+    "C1": "VERIFIED_SCOPED",
+    "C2": "VERIFIED_SCOPED",
+    "C3": "VERIFIED_SCOPED",
+    "C4": "VERIFIED_SCOPED",
+    "C5": "BLOCKED_PROTOCOL",
+    "C6": "VERIFIED_SCOPED"
+  },
+  "source": {
+    "version": "ArXiv HTML retrieved 2026-07-29",
+    "sha256": "d391f59973c02be99395f55c770d31c8728c5bdc4373244b59c4597dad246e4f"
+  },
+  "repository": {
+    "owner": "MachineLearning-Nerd",
+    "canonical_email": "MachineLearning-Nerd@users.noreply.github.com",
+    "github": "https://github.com/MachineLearning-Nerd/icml26-glu-condition-numbers",
+    "branches": 8,
+    "recovery_bundle_sha256": "50630d4b59cb128b7c500a0ad9c069c80098d8cb0904df3468725315384c9f49"
+  },
+  "historical_external_result": {
+    "live_judge_score": "8/12",
+    "candidate_space": "DineshAI/w0JhOFWPJl",
+    "current_score_claim": false
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "paper": "w0JhOFWPJl",
+  "arxiv": "2605.20749",
+  "source_scope": "ArXiv HTML source audit plus finite kernel, exact-assumption, full-CIFAR, and architecture NTK routes",
+  "source_sha256": "d391f59973c02be99395f55c770d31c8728c5bdc4373244b59c4597dad246e4f",
+  "overall_verdict": "PARTIAL_C1_C2_C3_C4_C6_VERIFIED_C5_BLOCKED_PROTOCOL",
+  "claim_statuses": {
+    "C1": "VERIFIED_SCOPED",
+    "C2": "VERIFIED_SCOPED",
+    "C3": "VERIFIED_SCOPED",
+    "C4": "VERIFIED_SCOPED",
+    "C5": "BLOCKED_PROTOCOL",
+    "C6": "VERIFIED_SCOPED"
+  },
+  "evidence": {
+    "c1_slope_non_glu": -0.9614990178442457,
+    "c1_slope_glu": -1.685869876097518,
+    "c2_relative_frobenius_error": 0.037161157423250865,
+    "c4_crossing_seed_count": 5,
+    "c5_mean_gap_difference": -0.000776798796404426,
+    "c5_gap_95_percent_confidence_interval": [-0.00930293565129776, 0.007749338058488909],
+    "c6_paired_wins": "24/24"
+  },
+  "historical_external_result": {
+    "live_judge_score": "8/12",
+    "current_score_claim": false
+  },
+  "publication": {
+    "publication_allowed": false,
+    "author_endorsement_claimed": false
+  },
+  "boundary": "Claims 1–4 and 6 are scoped finite or architecture audits. Claim 5 remains blocked until the source-default Mixer capacity and 100-epoch protocol are reproduced."
+}

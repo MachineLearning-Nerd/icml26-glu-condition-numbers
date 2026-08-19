@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "The Devil is in the Condition Numbers: Why is GLU Better than non-GLU Structure?",
+    "arxiv": "2605.20749",
+    "submission": "w0JhOFWPJl",
+    "source_version": "arXiv HTML retrieved 2026-07-29",
+    "authors": [
+      "Xingyu Lyu",
+      "Qianqian Xu",
+      "Zhiyong Yang",
+      "Peisong Wen",
+      "Qingming Huang"
+    ],
+    "source_sha256": "d391f59973c02be99395f55c770d31c8728c5bdc4373244b59c4597dad246e4f"
+  },
+  "overall_status": "PARTIAL_C1_C2_C3_C4_C6_VERIFIED_C5_BLOCKED_HISTORICAL_SCORE_8_OF_12_NO_CURRENT_SCORE",
+  "claims": [
+    {
+      "id": "C1",
+      "name": "condition_number_scaling",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Theorem 3.1",
+      "production": [
+        "evidence/campaign_results.json",
+        "reproduction/kernels.py",
+        "reproduction/checker.py"
+      ],
+      "controls": [
+        "evidence/checker_output.json",
+        "historical Hadamard-error corruption is rejected"
+      ],
+      "scope": "Finite arc-cosine ReLU/ReGLU kernel corroboration of the asymptotic O(n/d^2) versus O(n/d) scaling.",
+      "metrics": {
+        "slope_non_glu": -0.9614990178442457,
+        "slope_glu": -1.685869876097518
+      }
+    },
+    {
+      "id": "C2",
+      "name": "hadamard_ntk_approximation",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Section 3, Equation 5",
+      "production": [
+        "evidence/campaign_results.json",
+        "reproduction/kernels.py",
+        "reproduction/checker.py"
+      ],
+      "controls": [
+        "evidence/checker_output.json",
+        "corrupted relative-error fixture is rejected"
+      ],
+      "scope": "Finite approximation after the paper's dropped small-variance terms.",
+      "metrics": {
+        "dimension": 40,
+        "relative_frobenius_error": 0.037161157423250865
+      }
+    },
+    {
+      "id": "C3",
+      "name": "extreme_eigenvalue_behavior",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Theorem 3.1",
+      "production": [
+        "evidence/campaign_results.json",
+        "reproduction/kernels.py",
+        "evidence/checker_output.json"
+      ],
+      "controls": [
+        "historical fixture integrity check"
+      ],
+      "scope": "Finite tested widths: GLU has lower lambda_max at each tested dimension and the shared lambda_min trend rises with width.",
+      "metrics": {
+        "lambda_min_non_glu": [27.6, 52.8, 102.4],
+        "lambda_max_glu_lower_at_every_dimension": true
+      }
+    },
+    {
+      "id": "C4",
+      "name": "loss_crossing_under_corollary_4_2",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Proposition 4.1 and Corollary 4.2",
+      "production": [
+        "evidence/campaign_results.json",
+        "reproduction/loss_crossing.py",
+        ".openresearch/artifacts/claim_4"
+      ],
+      "controls": [
+        ".openresearch/artifacts/claim_4/checker_output.json",
+        "minimum-eigenvector quadratic-form control is rejected"
+      ],
+      "scope": "Exact Gaussian, dimension, sample-size, quadratic-form, and step-size assumptions are enforced; the historical n=40 check is not current evidence.",
+      "metrics": {
+        "n": 300,
+        "d": 20,
+        "seeds": [101, 102, 103, 104, 105],
+        "crossing_seed_count": 5,
+        "first_crossing_steps": [1834, 1853, 1943, 1812, 1939],
+        "negative_control_quadratic_form": -10534.002569600645
+      }
+    },
+    {
+      "id": "C5",
+      "name": "optimization_vs_generalization_gap",
+      "status": "BLOCKED_PROTOCOL",
+      "paper_anchor": "Section 5 and Figure 7",
+      "production": [
+        "evidence/campaign_results.json",
+        ".openresearch/artifacts/claim_5",
+        "reproduction/generalization_gap.py",
+        "reproduction/claim5_audit.py"
+      ],
+      "controls": [
+        "evidence/checker_output.json",
+        "four-route assumption-preserving audit remains blocked by protocol mismatch"
+      ],
+      "scope": "Matched-loss equivalence is supported, but source-default width=256, depth=4, and 100 epochs were not reproduced; no paper-level optimization verdict is claimed.",
+      "metrics": {
+        "mean_gap_difference": -0.000776798796404426,
+        "gap_95_percent_confidence_interval": [-0.00930293565129776, 0.007749338058488909],
+        "run_width": 64,
+        "run_depth": 2,
+        "run_epochs": 15,
+        "source_width": 256,
+        "source_depth": 4,
+        "source_epochs": 100
+      }
+    },
+    {
+      "id": "C6",
+      "name": "real_architecture_ntk_conditioning",
+      "status": "VERIFIED_SCOPED",
+      "paper_anchor": "Figure 3",
+      "production": [
+        "evidence/campaign_results.json",
+        ".openresearch/artifacts/claim_6",
+        "reproduction/architecture_ntk.py"
+      ],
+      "controls": [
+        ".openresearch/artifacts/claim_6/checker_output.json",
+        "identical-architecture ratio control is rejected"
+      ],
+      "scope": "Parameter-matched ViT and independently reconstructed GPT-2 FFN NTKs with n=8 inputs; official ViT script uses n=64.",
+      "metrics": {
+        "paired_wins": "24/24",
+        "sample_count": 8,
+        "seeds": [41, 42, 43, 44]
+      }
+    }
+  ]
+}

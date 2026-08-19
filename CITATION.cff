@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this audit, cite both this repository and the original paper."
+type: software
+title: "Independent audit of The Devil is in the Condition Numbers"
+version: "1.0.0"
+date-released: 2026-08-19
+authors:
+  - name: MachineLearning-Nerd
+repository-code: "https://github.com/MachineLearning-Nerd/icml26-glu-condition-numbers"
+url: "https://github.com/MachineLearning-Nerd/icml26-glu-condition-numbers"
+abstract: "Scoped claim-by-claim audit of GLU versus non-GLU condition numbers, loss crossing, real-architecture NTKs, and the blocked source-scale Mixer experiment."
+keywords:
+  - GLU
+  - neural tangent kernel
+  - condition number
+  - ReGLU
+  - ViT
+  - GPT-2
+  - reproduction
+preferred-citation:
+  type: article
+  title: "The Devil is in the Condition Numbers: Why is GLU Better than non-GLU Structure?"
+  authors:
+    - family-names: Lyu
+      given-names: Xingyu
+    - family-names: Xu
+      given-names: Qianqian
+    - family-names: Yang
+      given-names: Zhiyong
+    - family-names: Wen
+      given-names: Peisong
+    - family-names: Huang
+      given-names: Qingming
+  year: 2026
+  url: "https://arxiv.org/abs/2605.20749"
